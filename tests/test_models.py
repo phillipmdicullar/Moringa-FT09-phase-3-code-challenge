@@ -5,7 +5,7 @@ from models.magazine import Magazine
 
 class TestModels(unittest.TestCase):
     def test_author_creation(self):
-        author = Author(1, "John Doe")
+        author = Author("John Doe")
         self.assertEqual(author.name, "John Doe")
 
     def test_article_creation(self):
@@ -27,5 +27,14 @@ class TestModels(unittest.TestCase):
     def test_author_name_length(self):
         with self.assertRaises(ValueError):
             author = Author("")
+    def test_author_magazines(self):
+        author = Author("John Doe")
+        magazines = author.magazines()
+        self.assertEqual(len(magazines), 0)
+    def test_author_articles(self):
+        author = Author("John Doe")
+        articles = author.articles()
+        self.assertEqual(len(articles), 0) 
+  
 if __name__ == "__main__":
     unittest.main()
