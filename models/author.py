@@ -5,7 +5,7 @@ class Author:
         self.id = id
         self.name = name
     def id(self):
-        return self.id
+        return self._id
     @property
     def name(self):
         return self._name
@@ -15,6 +15,11 @@ class Author:
             raise ValueError("Name must be a non empty string.")
         return name
     def save(self):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO authors (name) VALUES (?)', (self._name,))
+        conn.commit()
+        return cursor.lastrowid
         return self
     pass
     def articles(self):
