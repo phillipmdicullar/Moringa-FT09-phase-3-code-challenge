@@ -11,6 +11,8 @@ class Author:
         return self._name
     @staticmethod
     def validate_name(name):
+        if not isinstance(name, str) or len(name) == 0:
+            raise ValueError("Name must be a non empty string.")
         return name
     def save(self):
         return self
