@@ -24,6 +24,8 @@ class TestModels(unittest.TestCase):
     def test_author_name_type(self):
         with self.assertRaises(ValueError):
             author = Author(123)
-
+    def test_author_name_length(self):
+        with self.assertRaises(ValueError):
+            author = Author("")
 if __name__ == "__main__":
     unittest.main()
