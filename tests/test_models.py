@@ -21,6 +21,9 @@ class TestModels(unittest.TestCase):
         author = Author("John Doe")
         with self.assertRaises(AttributeError):
             author.name = "Jane Doe"
-    
+    def test_author_name_type(self):
+        with self.assertRaises(ValueError):
+            author = Author(123)
+
 if __name__ == "__main__":
     unittest.main()
