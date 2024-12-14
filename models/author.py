@@ -23,6 +23,14 @@ class Author:
         return self
     pass
     def articles(self):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('''
+            SELECT DISTINCT magazines.*
+            FROM magazines
+            JOIN articles ON magazines.id = articles.magazine_id
+            WHERE articles.author_id = ?
+        ''', (self.id,))
         return cursor.fetchall()
     def magazines(self):
         return cursor.fetchall()
