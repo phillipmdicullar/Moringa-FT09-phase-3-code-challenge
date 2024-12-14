@@ -23,8 +23,11 @@ class Author:
         return self
     pass
     def articles(self):
-
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM articles WHERE author_id = ?', (self.id,))
         return cursor.fetchall()
+        
     def magazines(self):
         conn = get_db_connection()
         cursor = conn.cursor()
