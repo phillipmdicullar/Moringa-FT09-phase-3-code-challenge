@@ -10,11 +10,17 @@ class TestModels(unittest.TestCase):
 
     def test_article_creation(self):
         article = Article(1, "Test Title", "Test Content", 1, 1)
+        magazine = Magazine("Tech Weekly", "Technology")
+        author = Author("John Doe")
         self.assertEqual(article.title, "Test Title")
 
     def test_magazine_creation(self):
         magazine = Magazine(1, "Tech Weekly")
         self.assertEqual(magazine.name, "Tech Weekly")
-
+    def test_author_name_change(self):
+        author = Author("John Doe")
+        with self.assertRaises(AttributeError):
+            author.name = "Jane Doe"
+    
 if __name__ == "__main__":
     unittest.main()
