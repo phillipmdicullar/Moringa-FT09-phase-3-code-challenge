@@ -21,6 +21,11 @@ class Author:
         return cursor.fetchall()
     @classmethod
     def drop_table(cls):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('DROP TABLE IF EXISTS authors')
+        conn.commit()
+        conn.close()
     # def __repr__(self):
     #     return f'<Author {self.name}>'
     
