@@ -1,30 +1,39 @@
+from database.connection import get_db_connection
+
 class Magazine:
-    def __init__(self, id, name, category):
+    def __init__(self, name, category):
         self._id = None
         self._name = self.validate_name(name)
-        self.category = self.validate_category(category)
-    def article_titles(self):
-        #articles associated woith the magazine 
-        all_articles = self.articles()
-        if not all_articles:
-            return None
-        #get article titles
-        titles = [article.title for article in articles]
-        return titles
-        pass
+        self._category = self.validate_category(category)
+        self.save()
+
+    @property
+    def id(self):
+        return self._id
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def category(self):
+        return self._category
+
+    def save(self):
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO magazines (name, category) VALUES (?, ?)', (self._name, self._category))
+        conn.commit()
+        self._id = cursor.lastrowid
+
     @staticmethod
     def validate_name(name):
-        if not isinstance(name, str):
-            raise ValueError("Name should be of type string")
-        if not (2 <= len(name) <= 16):
-            raise ValueError("Name must be a string between 2 and 16 chars")
+        if not isinstance(name, str) or not (2 <= len(name) <= 16):
+            raise ValueError("Name must be a string between 2 and 16 characters.")
         return name
+
     @staticmethod
     def validate_category(category):
-        if not isinstance(category, str):
-            raise ValueError("Category must be a string")
-        if len(category) == 0:
-            raise ValueError("Category must be longer than 0 characters")
+        if not isinstance(category, str) or len(category) == 0:
+            raise ValueError("Category must be a non-empty string.")
         return category
-    def __repr__(self):
-        return f'<Magazine {self.name}>'
