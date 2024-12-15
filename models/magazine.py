@@ -53,3 +53,14 @@ class Magazine:
         cursor.execute('''SELECT DISTINCT authors.id, authors.name FROM authors JOIN articles ON authors.id = articles.author_id WHERE articles.magazine_id = ?''', (self.id,))
         rows = cursor.fetchall()
         return [Author(row["id"], row["name"]) for row in rows]
+    def contributing_authors(self):
+        from models.author import Author
+        articles = self.articles()
+        if not articles:
+            return None
+        author_counts = {}
+        for article in articles:
+            author_counts[article.author_id] = author_counts.get(article.author_id, 0) + 1
+        contributing_authors = [Author.find_by_id(author_id) for author_id, count in author_counts.items() if count > 2 ]
+        return contributing_authors if contributing_authors else None
+    
