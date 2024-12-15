@@ -45,3 +45,11 @@ class Magazine:
         cursor.execute('''SELECT articles.id, articles.title,articles.content, articles.author_id,articles.magazine_id FROM articles WHERE articles.magazine_id= ?''', (self.id,))
         rows = cursor.fetchall()
         return [Article(row["id"], row["title"], row["content"], row["author_id"], self) for row in rows ]
+#implement contributors method to fetch distinct authors for a a magazine
+    def contributors(self):
+        from models.author import Author
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('''SELECT DISTINCT authors.id, authors.name FROM authors JOIN articles ON authors.id = articles.author_id WHERE articles.magazine_id = ?''', (self.id,))
+        rows = cursor.fetchall()
+        return [Author(row["id"], row["name"]) for row in rows]
