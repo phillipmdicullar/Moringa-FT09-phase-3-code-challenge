@@ -63,4 +63,32 @@ class Magazine:
             author_counts[article.author_id] = author_counts.get(article.author_id, 0) + 1
         contributing_authors = [Author.find_by_id(author_id) for author_id, count in author_counts.items() if count > 2 ]
         return contributing_authors if contributing_authors else None
-    
+    _instances = []
+
+    def __init__(self, name, category):
+        self._id = None
+        self._name = self.validate_name(name)
+        self._category = self.validate_category(category)
+        self.save()
+        Magazine._instances.append(self)
+
+    @classmethod
+    def top_publisher(cls):
+        from models.article import Article
+        if not cls._instances:
+            return None
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('''
+            SELECT magazine_id, COUNT(*) as article_count
+            FROM articles
+            GROUP BY magazine_id
+            ORDER BY article_count DESC
+            LIMIT 1
+        ''')
+        result = cursor.fetchone()
+        if result:
+            top_magazine_id = result["magazine_id"]
+            return next((mag for mag in cls._instances if mag.id == top_magazine_id), None)
+        return None
