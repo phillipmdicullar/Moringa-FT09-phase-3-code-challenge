@@ -26,3 +26,8 @@ class Article:
             FOREIGN KEY(author_id) REFERENCES authors(id),
             FOREIGN KEY(magazine_id) REFERENCES magazines(id))''')
         conn.commit()
+    def save(self):
+        with get_db_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute('''INSERT INTO articles (title, content, author_id, magazine_id) VALUES (?, ?, ?, ?)''',(self._title, self._content, self._author.id, self._magazine.id))
+            self._id = cursor.lastrowid
