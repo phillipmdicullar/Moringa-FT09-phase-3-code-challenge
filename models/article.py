@@ -8,3 +8,8 @@ class Article:
         self.save() #
     def __repr__(self):
         return f'<Article {self.title}>'
+    @staticmethod
+    def validate_title(title):
+        if not isinstance(title, str) or not (5 <= len(title) <= 50):
+            raise ValueError("Title must be a string between 5 and 50 characters")
+        return title
