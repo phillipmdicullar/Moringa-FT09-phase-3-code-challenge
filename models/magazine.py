@@ -1,8 +1,17 @@
 class Magazine:
     def __init__(self, id, name, category):
         self._id = None
-        self._name = name
-        self.category = category
+        self._name = self.validate_name(name)
+        self.category = self.validate_category(category)
+    def article_titles(self):
+        #articles associated woith the magazine 
+        all_articles = self.articles()
+        if not all_articles:
+            return None
+        #get article titles
+        titles = [article.title for article in articles]
+        return titles
+        pass
     @staticmethod
     def validate_name(name):
         if not isinstance(name, str):
