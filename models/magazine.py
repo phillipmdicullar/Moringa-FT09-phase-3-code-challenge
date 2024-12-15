@@ -37,3 +37,11 @@ class Magazine:
         if not isinstance(category, str) or len(category) == 0:
             raise ValueError("Category must be a non-empty string.")
         return category
+#implement article methods to fetch all articles related to the magazine
+    def articles(self):
+        from models.article import Article
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('''SELECT articles.id, articles.title,articles.content, articles.author_id,articles.magazine_id FROM articles WHERE articles.magazine_id= ?''', (self.id,))
+        rows = cursor.fetchall()
+        return [Article(row["id"], row["title"], row["content"], row["author_id"], self) for row in rows ]
