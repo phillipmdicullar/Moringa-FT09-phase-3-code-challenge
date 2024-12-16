@@ -87,22 +87,22 @@ To ensure the functionality of your code, test cases have been provided in the /
 Example Usage
 python
 Copy code
-# Create Author
+### Create Author
 `author1 = Author("John Doe")`
 
-# Create Magazine
+### Create Magazine
 `magazine1 = Magazine("Tech Monthly", "Technology")`
 
-# Create Article
+### Create Article
 `article1 = Article(author1, magazine1, "The Future of the world")`
 
-# Get Author's Articles
+#### Get Author's Articles
 `author_articles = author1.articles()`
 
-# Get Magazine's Contributors
+### Get Magazine's Contributors
 `magazine_contributors = magazine1.contributors()`
 
-# Print Titles of Articles in a Magazine
+### Print Titles of Articles in a Magazine
 `article_titles = magazine1.article_titles()`
 ### Conclusion
 This repository represents a comprehensive solution for managing the relationships between authors, articles, and magazines. By implementing the required methods and testing your code, you will gain valuable experience working with databases, object-oriented programming, and SQL joins.
