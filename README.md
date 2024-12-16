@@ -18,9 +18,9 @@ This challenge includes the design, implementation, and testing of CRUD operatio
 Clone the repository:
 
 bash
-Copy code
+1 Copy code
 `git clone <repository-url>`
-Install the required dependencies using pipenv:
+2 Install the required dependencies using pipenv:
 
 bash
 Copy code
@@ -51,36 +51,36 @@ Copy code
 
 ### Core Deliverables
 #### Author Model
-`Initialization (__init__)`: Initialize an author with a name.
-ID Property: Returns the ID of the author (Primary Key from the database).
+`Initialization (__init__):` Initialize an author with a name.
+`ID Property:` Returns the ID of the author (Primary Key from the database).
 Name Property: Returns and manages the author's name (cannot be changed after instantiation).
 Magazine Model
-`Initialization (__init__)`: Initialize a magazine with a name and category.
-`ID Property`: Returns the ID of the magazine.
-`Name Property`: Returns and manages the magazine's name (can be changed after instantiation).
-`Category Property`: Returns and manages the magazine's category (can be changed after instantiation).
+`Initialization (__init__):` Initialize a magazine with a name and category.
+`ID Property:` Returns the ID of the magazine.
+`Name Property:` Returns and manages the magazine's name (can be changed after instantiation).
+`Category Property:` Returns and manages the magazine's category (can be changed after instantiation).
 Article Model
-`Initialization (__init__)`: Initialize an article with a title, and links to both an author and a magazine.
-`Title Property`: Returns the article's title (cannot be changed after instantiation).
-`Author Property`: Returns the author of the article.
-`Magazine Property`: Returns the magazine of the article.
+`Initialization (__init__):` Initialize an article with a title, and links to both an author and a magazine.
+`Title Property:` Returns the article's title (cannot be changed after instantiation).
+`Author Property:` Returns the author of the article.
+`Magazine Property:` Returns the magazine of the article.
 ## Methods for Relationships
 #### Article Model:
 
-`author`: Returns the author of the article.
-`magazine`: Returns the magazine of the article.
+`author:` Returns the author of the article.
+`magazine:` Returns the magazine of the article.
 Author Model:
 
-`articles()`: Returns all articles written by the author.
-`magazines()`: Returns all magazines associated with the author.
+`articles():` Returns all articles written by the author.
+`magazines():` Returns all magazines associated with the author.
 Magazine Model:
 
-`articles()`: Returns all articles published in the magazine.
-`contributors()`: Returns all authors who have contributed to the magazine.
+`articles():` Returns all articles published in the magazine.
+`contributors():` Returns all authors who have contributed to the magazine.
 Advanced Methods
 Magazine Model:
-`article_titles()`: Returns a list of article titles for a given magazine.
-`contributing_authors()`: Returns a list of authors who have written more than 2 articles for the magazine.
+`article_titles():` Returns a list of article titles for a given magazine.
+`contributing_authors():` Returns a list of authors who have written more than 2 articles for the magazine.
 Testing
 To ensure the functionality of your code, test cases have been provided in the /tests folder. As you work on implementing methods, run these tests to verify your progress and ensure that your code works as expected.
 
