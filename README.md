@@ -38,17 +38,18 @@ Copy code
 File Structure
 plaintext
 Copy code
-`├── /app.py`                # Main application file to test and create database
-`├── /database`              # Contains database setup and connection files
-`│   ├── setup.py`           # Queries to create the database tables
-`│   └── connection.py`      # Database connection string
-`├── /models`                # Model files (Author, Article, Magazine)
-`│   ├── Author.py`          # Author model with CRUD methods
-`│   ├── Article.py `        # Article model with CRUD methods
-`│   └── Magazine.py`        # Magazine model with CRUD methods
-`└── /tests`                 # Test files for verifying the functionality
-`    └── tests.py`           # Provided test cases to guide implementation
-
+```
+├── /app.py                # Main application file to test and create database
+├── /database              # Contains database setup and connection files
+│   ├── setup.py           # Queries to create the database tables
+│   └── connection.py      # Database connection string
+├── /models                # Model files (Author, Article, Magazine)
+│   ├── Author.py`          # Author model with CRUD methods
+│   ├── Article.py        # Article model with CRUD methods
+│   └── Magazine.py        # Magazine model with CRUD methods
+└── /tests                 # Test files for verifying the functionality
+   └── tests.py           # Provided test cases to guide implementation
+```
 ### Core Deliverables
 #### Author Model
 `Initialization (__init__):` Initialize an author with a name.
